@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+set -ue
+
+sudo apt-get update
+sudo apt-get install -y \
+  curl \
+  fzf \
+  gcc \
+  git \
+  libssl-dev \
+  openssl \
+  pkg-config \
+  wget \
+  vim \
+  zsh
+
+sudo sh -c "$(curl -fsLS https://starship.rs/install.sh)" -- -f
+
+curl https://sh.rustup.rs -sSf | sh -s -- -y
+source $HOME/.cargo/env
+cargo install \
+  git-delta \
+  sheldon
+
+sh -c "$(curl -fsLS get.chezmoi.io)" -- -b $HOME/.local/bin init --apply mozisan
